@@ -18,28 +18,28 @@ public class XBox360InputDevice : InputDevice
     }
 
 
-    public float GetXAxis()
+    override public float GetXAxis()
     {
         return Input.GetAxis(xAxisIdentifier);
     }
 
-    public float GetYAxis()
+    override public float GetYAxis()
     {
         return -Input.GetAxis(yAxixIdentifier);
     }
 
-    public bool GetButton(int buttonIndex)
+    override public bool GetButton(int buttonIndex)
     {
         return Input.GetKey("joystick " + gamepadIndex + " button " + buttonIndex);
     }
 
-    public bool GetButtonDown(int buttonIndex)
+    override public bool GetButtonDown(int buttonIndex)
     {
         return Input.GetKeyDown("joystick " + gamepadIndex + " button " + buttonIndex);
     }
 
 
-    public bool GetButtonUp(int buttonIndex)
+    override public bool GetButtonUp(int buttonIndex)
     {
         return Input.GetKeyUp("joystick " + gamepadIndex + " button " + buttonIndex);
     }

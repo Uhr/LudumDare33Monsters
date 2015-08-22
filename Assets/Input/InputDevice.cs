@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface InputDevice
+public abstract class InputDevice : MonoBehaviour
 {
 
 
-    float GetXAxis();
-    float GetYAxis();
-    bool GetButton(int buttonIndex);
-    bool GetButtonDown(int buttonIndex);
-    bool GetButtonUp(int buttonIndex);
+    public abstract float GetXAxis();
+    public abstract float GetYAxis();
+    public abstract bool GetButton(int buttonIndex);
+    public abstract bool GetButtonDown(int buttonIndex);
+    public abstract bool GetButtonUp(int buttonIndex);
 
 }
