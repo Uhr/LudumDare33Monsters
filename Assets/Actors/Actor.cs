@@ -3,46 +3,32 @@ using System.Collections;
 
 public class Actor : MonoBehaviour {
 	public InputDevice input;
-	public float movementSpeed = 5;
-	public float maxJumpHeight = 1;
-	public float jumpSpeed = 2;
+	public float movementSpeed = 1;
+	public Collider2D collider;
+	public Action[] actions = new Action[4];
+	public float hp = 50;
 
-	private float currentJumpHeight = 0;
-	private bool isJumping = false;
-	private bool jumpGoingUp = true;
+	private Rigidbody2D rigidBody;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+		rigidBody = gameObject.AddComponent<Rigidbody2D>();
+		rigidBody.freezeRotation = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 moveDir = new Vector3(input.GetXAxis(), input.GetYAxis(), 0).normalized;
-		moveDir *= movementSpeed * Time.deltaTime;
+		rigidBody.velocity = Vector2.zero;
 
-		if(!isJumping && input.GetButton(0)) {
-			isJumping = true;
-			jumpGoingUp = true;
-			currentJumpHeight = 0;
-		}
+		Vector2 moveDir = new Vector2(input.GetXAxis(), input.GetYAxis()).normalized;
+		moveDir *= movementSpeed;
 
-		if(isJumping) {
-			float deltaHeight = Mathf.Clamp(
-				jumpSpeed * (jumpGoingUp ? 1 : -1) * Time.deltaTime,
-				-currentJumpHeight,
-				maxJumpHeight - currentJumpHeight);
+		rigidBody.velocity += moveDir;
 
-			moveDir.y += deltaHeight;
-			currentJumpHeight += deltaHeight;
-
-			if(currentJumpHeight <= 0) {
-				isJumping = false;
-			} else if(currentJumpHeight >= maxJumpHeight) {
-				jumpGoingUp = false;
+		for(int i = 0; i<actions.Length; i++) {
+			if(actions[i] != null && input.GetButton(i)) {
+				actions[i].performAction();
 			}
 		}
-
-		
-		transform.Translate(moveDir);
 	}
 }
