@@ -6,17 +6,23 @@ public class Jump : Action {
 
 	[SerializeField]
 	private GameObject shadow;
-	private bool isGrounded = false;
 	private Rigidbody2D rigidBody;
 
 	private bool isJumping = false;
+	
+	public override void performAction() {
+		if(!isJumping) {
+			isJumping = true;
+			rigidBody.velocity += new Vector2(0, jumpSpeed);
+		}
+	}
 
 	void Start() {
 		rigidBody = gameObject.GetComponent<Rigidbody2D>();
 	}
 
-	public override void performAction() {
-		if(isGrounded) {
+	void Update() {
+		if(!isJumping) {
 			rigidBody.velocity += new Vector2(0, jumpSpeed);
 		}
 	}
