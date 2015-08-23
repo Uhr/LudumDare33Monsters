@@ -213,7 +213,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
-  m_StereoMirrorMode: 0
 --- !u!4 &924638934
 Transform:
   m_ObjectHideFlags: 0
@@ -236,9 +235,9 @@ GameObject:
   - 4: {fileID: 1042585816}
   - 212: {fileID: 1042585815}
   - 114: {fileID: 1042585817}
-  - 114: {fileID: 1042585818}
   - 114: {fileID: 1042585820}
   - 58: {fileID: 1042585819}
+  - 114: {fileID: 1042585818}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -298,13 +297,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 1042585818}
   movementSpeed: 30
-  collider: {fileID: 1042585819}
+  collider: {fileID: 0}
   actions:
-  - {fileID: 1042585820}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   hp: 50
+  rigidBody: {fileID: 0}
 --- !u!114 &1042585818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,9 +313,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1042585814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e865a795402b1df47a937ef9565dbadb, type: 3}
+  m_Script: {fileID: 11500000, guid: 3770fd2ed7134d348a3a14f5473cf9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamepadIndex: 1
 --- !u!58 &1042585819
 CircleCollider2D:
   m_ObjectHideFlags: 0

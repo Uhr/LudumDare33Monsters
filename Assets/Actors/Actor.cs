@@ -8,12 +8,13 @@ public class Actor : MonoBehaviour {
 	public Action[] actions = new Action[4];
 	public float hp = 50;
 
+    [SerializeField]
 	private Rigidbody2D rigidBody;
 
 	// Use this for initialization
 	void Awake () {
-		rigidBody = gameObject.AddComponent<Rigidbody2D>();
-		rigidBody.freezeRotation = true;
+        rigidBody = gameObject.AddComponent<Rigidbody2D>();
+        rigidBody.fixedAngle = true;
 	}
 	
 	// Update is called once per frame

@@ -4,28 +4,27 @@ using System.Collections;
 public class XBox360InputDevice : InputDevice
 {
 
-
+    [SerializeField]
     private int gamepadIndex;
     private string xAxisIdentifier;
     private string yAxixIdentifier;
 
 
+
     public XBox360InputDevice(int gamepadIndex)
     {
         this.gamepadIndex = gamepadIndex;
-        xAxisIdentifier = "Axis X Pad " + gamepadIndex;
-        yAxixIdentifier = "Axis Y Pad " + gamepadIndex;
     }
 
 
     override public float GetXAxis()
     {
-        return Input.GetAxis(xAxisIdentifier);
+        return Input.GetAxis("Axis X Pad " + gamepadIndex);
     }
 
     override public float GetYAxis()
     {
-        return -Input.GetAxis(yAxixIdentifier);
+        return -Input.GetAxis("Axis Y Pad " + gamepadIndex);
     }
 
     override public bool GetButton(int buttonIndex)

@@ -22,8 +22,8 @@ public class Jump : Action {
 	}
 
 	void Update() {
-		if(!isJumping) {
-			rigidBody.velocity += new Vector2(0, jumpSpeed);
-		}
+        //if(!isJumping) {
+        //    rigidBody.velocity += new Vector2(0, jumpSpeed);
+        //}
 	}
 }
