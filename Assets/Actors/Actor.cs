@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Actor : MonoBehaviour
 {
@@ -30,14 +31,10 @@ public class Actor : MonoBehaviour
     {
         UpdateLastAnimationMovementDirection();
 
-        TriggerStateChanges();
+        ComputeMovement();
 
-        rigidBody.velocity = Vector2.zero;
 
-        Vector2 moveDir = new Vector2(input.GetXAxis(), input.GetYAxis()).normalized;
-        moveDir *= movementSpeed;
 
-        rigidBody.velocity += moveDir;
 
         // fix draw order
         Vector3 currentPosition = transform.position;
@@ -46,7 +43,22 @@ public class Actor : MonoBehaviour
 
     }
 
-    public Vector2 getLastAnimationMovementDirection()
+    bool MovementChangesBlocked()
+    {
+        foreach (Action act in actions)
+        {
+            if (act.IsActive() && act.BlocksInputMovement())
+            {
+
+                return true;
+
+            }
+        }
+
+        return false;
+    }
+
+    public Vector2 GetLastAnimationMovementDirection()
     {
         return lastAnimationMovementDirection;
     }
@@ -59,17 +71,30 @@ public class Actor : MonoBehaviour
         }
     }
 
-    void TriggerStateChanges()
+    void ComputeMovement()
     {
 
+        List<Action> activeActions = new List<Action>();
 
-
-        if (input.GetButtonDown(0))
+        foreach (Action a in actions)
         {
-            Debug.Log("pressed");
-            actions[0].performAction();
+            if (a.IsActive())
+            {
+                activeActions.Add(a);
+            }
         }
 
+        for (int i = 0; i < actions.Length; i++)
+        {
+            if (input.GetButtonDown(i) && !actions[i].IsBlockedBy(activeActions))
+            {
+                actions[i].performAction();
+                if(!activeActions.Contains(actions[i]))
+                    activeActions.Add(actions[i]);
+            }
+        }
+
+        bool dashInProgress = false;
 
         bool actionInProgress = false;
         foreach (Action act in actions)
@@ -77,7 +102,10 @@ public class Actor : MonoBehaviour
             if (act.IsActive())
             {
                 actionInProgress = true;
-                break;
+                if (act is Dash)
+                {
+                    dashInProgress = true;
+                }
             }
         }
 
@@ -120,6 +148,29 @@ public class Actor : MonoBehaviour
             currentAnimationState = AnimationState.CustomAction;
         }
 
+
+
+        if (!MovementChangesBlocked())
+        {
+
+            {
+                rigidBody.velocity = Vector2.zero;
+
+                Vector2 moveDir = new Vector2(input.GetXAxis(), input.GetYAxis()).normalized;
+                moveDir *= movementSpeed;
+
+                rigidBody.velocity += moveDir;
+            }
+        }
+        else if (dashInProgress)
+        {
+            rigidBody.velocity = Vector2.zero;
+
+            Vector2 moveDir = lastAnimationMovementDirection.normalized;
+            moveDir *= movementSpeed * 2;
+
+            rigidBody.velocity += moveDir;
+        }
 
 
     }

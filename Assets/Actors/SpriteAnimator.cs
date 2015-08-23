@@ -35,12 +35,15 @@ public class SpriteAnimator : MonoBehaviour
 
     [SerializeField]
     bool cycleAnimation;
-    [SerializeField]
-    float animationDuration;
+
+    public float animationDuration;
 
 
     float animationStartTime;
 
+
+    public bool debugOutput = false;
+    public string debugName;
 
 
 
@@ -55,7 +58,7 @@ public class SpriteAnimator : MonoBehaviour
     public void UpdateAnimation()
     {
         // choose direction
-        Vector2 playerVelocity = actor.getLastAnimationMovementDirection();
+        Vector2 playerVelocity = actor.GetLastAnimationMovementDirection();
         float angle = Vector2.Angle(Vector2.up, playerVelocity);
         if (playerVelocity.x < 0)
         {
@@ -123,11 +126,6 @@ public class SpriteAnimator : MonoBehaviour
             }
         }
 
-        Debug.Log(angle);
-
-
-
-
         // timing
         if (cycleAnimation)
         {
@@ -139,34 +137,40 @@ public class SpriteAnimator : MonoBehaviour
             }
         }
 
+        if (debugOutput)
+            Debug.Log(debugName);
 
+        if (debugOutput)
+            Debug.Log("Animation Duration " + animationDuration);
+        if (debugOutput)
+            Debug.Log("Animation Start Time " + animationStartTime);
         float passedTimeRatio = (Time.time - animationStartTime) / animationDuration;
+        if (debugOutput)
+            Debug.Log("Passed Time Ratio " + passedTimeRatio);
         int index = Mathf.FloorToInt(passedTimeRatio * chosenSprites.Count);
+        if (debugOutput)
+            Debug.Log("Index: " + index);
+        if (debugOutput)
+            Debug.Log("Length: " + chosenSprites.Count);
         if (index >= chosenSprites.Count)
         {
             index = chosenSprites.Count - 1;
         }
 
+        if (debugOutput)
+            Debug.Log("NewIndex: " + index);
+
+
         Sprite chosenSprite = chosenSprites[index];
+
+        if (debugOutput)
+            Debug.Log("No Fail");
 
         targetSpriteRenderer.sprite = chosenSprite;
 
     }
 
-    List<Sprite> GetSpritesByIndex(int index)
-    {
-        switch (index)
-        {
-            case 1: return spritesFor45;
-            case 2: return spritesFor90;
-            case 3: return spritesFor135;
-            case 4: return spritesFor180;
-            case 5: return spritesFor225;
-            case 6: return spritesFor270;
-            case 7: return spritesFor315;
-            default: return spritesFor0;
-        }
-    }
+
 
 
 }

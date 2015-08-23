@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Jump : Action
 {
@@ -36,9 +36,9 @@ public class Jump : Action
         return false;
     }
 
-    override public bool IsBlockedBy(Action otherAction)
+    override public bool IsBlockedBy(List<Action> activeActions)
     {
-        return false;
+        return activeActions.Exists(x => x is Dash);
     }
 
 
