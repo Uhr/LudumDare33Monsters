@@ -11,6 +11,9 @@ public class Actor : MonoBehaviour {
     [SerializeField]
 	private Rigidbody2D rigidBody;
 
+    [SerializeField]
+    Animator animator;
+
 	// Use this for initialization
 	void Awake () {
         rigidBody = gameObject.AddComponent<Rigidbody2D>();
@@ -31,5 +34,11 @@ public class Actor : MonoBehaviour {
 				actions[i].performAction();
 			}
 		}
+
+        if (input.GetButtonDown(0))
+        {
+            animator.SetTrigger("DoJump");
+        }
+
 	}
 }
