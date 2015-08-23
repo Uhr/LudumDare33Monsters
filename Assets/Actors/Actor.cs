@@ -35,10 +35,21 @@ public class Actor : MonoBehaviour {
 			}
 		}
 
+
+        animator.ResetTrigger("DoJump");
+        animator.ResetTrigger("DoRoll");
+
+
         if (input.GetButtonDown(0))
         {
             animator.SetTrigger("DoJump");
         }
+        if (input.GetButtonDown(1))
+        {
+            animator.SetTrigger("DoRoll");
+        }
+
+
 
 	}
 }
