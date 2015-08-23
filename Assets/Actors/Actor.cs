@@ -1,55 +1,130 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Actor : MonoBehaviour {
-	public InputDevice input;
-	public float movementSpeed = 1;
-	public Collider2D collider;
-	public Action[] actions = new Action[4];
-	public float hp = 50;
+public class Actor : MonoBehaviour
+{
+    public InputDevice input;
+    public float movementSpeed = 1;
+    public Collider2D collider;
+    [SerializeField]
+    public Action[] actions = new Action[4];
+    public float hp = 50;
 
     [SerializeField]
-	private Rigidbody2D rigidBody;
+    private Rigidbody2D rigidBody;
 
     [SerializeField]
-    Animator animator;
+    SpriteAnimator walkingAnimator;
+    [SerializeField]
+    SpriteAnimator idleAnimator;
+    enum AnimationState { CustomAction, Idle, Walking, None };
+    AnimationState currentAnimationState = AnimationState.None;
 
-	// Use this for initialization
-	void Awake () {
-        rigidBody = gameObject.AddComponent<Rigidbody2D>();
-        rigidBody.fixedAngle = true;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		rigidBody.velocity = Vector2.zero;
-
-		Vector2 moveDir = new Vector2(input.GetXAxis(), input.GetYAxis()).normalized;
-		moveDir *= movementSpeed;
-
-		rigidBody.velocity += moveDir;
-
-		for(int i = 0; i<actions.Length; i++) {
-			if(actions[i] != null && input.GetButton(i)) {
-				actions[i].performAction();
-			}
-		}
+    Vector2 lastAnimationMovementDirection = Vector2.zero;
 
 
-        animator.ResetTrigger("DoJump");
-        animator.ResetTrigger("DoRoll");
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        UpdateLastAnimationMovementDirection();
+
+        TriggerStateChanges();
+
+        rigidBody.velocity = Vector2.zero;
+
+        Vector2 moveDir = new Vector2(input.GetXAxis(), input.GetYAxis()).normalized;
+        moveDir *= movementSpeed;
+
+        rigidBody.velocity += moveDir;
+
+        // fix draw order
+        Vector3 currentPosition = transform.position;
+        currentPosition.z = transform.position.y;
+        transform.position = currentPosition;
+
+    }
+
+    public Vector2 getLastAnimationMovementDirection()
+    {
+        return lastAnimationMovementDirection;
+    }
+
+    void UpdateLastAnimationMovementDirection()
+    {
+        if (rigidBody.velocity != Vector2.zero)
+        {
+            lastAnimationMovementDirection = rigidBody.velocity;
+        }
+    }
+
+    void TriggerStateChanges()
+    {
+
 
 
         if (input.GetButtonDown(0))
         {
-            animator.SetTrigger("DoJump");
+            Debug.Log("pressed");
+            actions[0].performAction();
         }
-        if (input.GetButtonDown(1))
+
+
+        bool actionInProgress = false;
+        foreach (Action act in actions)
         {
-            animator.SetTrigger("DoRoll");
+            if (act.IsActive())
+            {
+                actionInProgress = true;
+                break;
+            }
+        }
+
+
+        // choose animation if none in progress
+        if (!actionInProgress)
+        {
+            bool idling = input.GetXAxis() == 0 && input.GetYAxis() == 0;
+
+            if (idling)
+            {
+
+                if (currentAnimationState == AnimationState.Idle)
+                {
+                    idleAnimator.UpdateAnimation();
+                }
+                else
+                {
+                    currentAnimationState = AnimationState.Idle;
+                    idleAnimator.StartAnimation();
+                }
+
+            }
+            else
+            {
+                if (currentAnimationState == AnimationState.Walking)
+                {
+                    walkingAnimator.UpdateAnimation();
+                }
+                else
+                {
+                    currentAnimationState = AnimationState.Walking;
+                    walkingAnimator.StartAnimation();
+                }
+            }
+
+        }
+        else
+        {
+            currentAnimationState = AnimationState.CustomAction;
         }
 
 
 
-	}
+    }
+
+
+
+
 }

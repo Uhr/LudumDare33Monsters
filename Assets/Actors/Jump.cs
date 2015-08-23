@@ -1,29 +1,74 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Jump : Action {
-	public float jumpSpeed = 5;
+public class Jump : Action
+{
 
-	[SerializeField]
-	private GameObject shadow;
-	private Rigidbody2D rigidBody;
+    bool isJumping = false;
+    [SerializeField]
+    float duration;
+    [SerializeField]
+    float maxHeight = 1;
+    [SerializeField]
+    AnimationCurve animation;
+    [SerializeField]
+    Transform playerSprite;
+    private float startTime;
 
-	private bool isJumping = false;
-	
-	public override void performAction() {
-		if(!isJumping) {
-			isJumping = true;
-			rigidBody.velocity += new Vector2(0, jumpSpeed);
-		}
-	}
+    [SerializeField]
+    SpriteAnimator animator;
 
-	void Start() {
-		rigidBody = gameObject.GetComponent<Rigidbody2D>();
-	}
+    override public void performAction()
+    {
 
-	void Update() {
-        //if(!isJumping) {
-        //    rigidBody.velocity += new Vector2(0, jumpSpeed);
-        //}
-	}
+        Debug.Log("Jump started");
+        if (!isJumping)
+        {
+            isJumping = true;
+            startTime = Time.time;
+            animator.StartAnimation();
+        }
+
+    }
+
+    override public bool BlocksInputMovement()
+    {
+        return false;
+    }
+
+    override public bool IsBlockedBy(Action otherAction)
+    {
+        return false;
+    }
+
+
+    override public void ResetState()
+    {
+        isJumping = false;
+    }
+
+    void Update()
+    {
+        if (isJumping)
+        {
+
+            float passedTimeRatio = (Time.time - startTime) / duration;
+            float animationHeight = animation.Evaluate(passedTimeRatio) * maxHeight;
+            playerSprite.localPosition = new Vector3(playerSprite.localPosition.x, animationHeight, playerSprite.localPosition.z);
+
+            if (passedTimeRatio >= 1)
+            {
+                isJumping = false;
+            }
+
+            animator.UpdateAnimation();
+        }
+    }
+
+
+
+    public override bool IsActive()
+    {
+        return isJumping;
+    }
 }
