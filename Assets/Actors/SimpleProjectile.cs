@@ -8,7 +8,9 @@ public class SimpleProjectile : Projectile, PlayerChoiceReactor
     private float speed;
 
     float creationTime;
-    float lifeTime = 10;
+
+	[SerializeField]
+    float lifeTime = 5;
 
     [SerializeField]
     SpriteAnimator animator1;
@@ -55,23 +57,9 @@ public class SimpleProjectile : Projectile, PlayerChoiceReactor
         }
     }
 
-    void DestroySelf()
+    public void DestroySelf()
     {
         Destroy(this.gameObject);
-    }
-
-
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        Actor actor = collider.gameObject.GetComponent<Actor>();
-        if (actor != null)
-        {
-            if (actor != this.owner)
-            {
-                DestroySelf();
-            }
-        }
-
     }
 
 
