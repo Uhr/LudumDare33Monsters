@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 public class ProjectileAttack : Action, PlayerChoiceReactor
 {
-    private float lastActionTime;
+    protected float lastActionTime;
 
     [SerializeField]
-    private float cooldown;
+    protected float cooldown;
 
     [SerializeField]
-    private GameObject projectile;
+    protected GameObject projectile;
 
     [SerializeField]
-    private Actor player;
+    protected Actor player;
 
     public override void performAction()
     {

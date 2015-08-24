@@ -19,7 +19,6 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         allPlayers = new List<Actor>();
 		int i = 0;
         foreach (Player p in GlobalData.GetPlayers())
