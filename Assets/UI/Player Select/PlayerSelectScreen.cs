@@ -168,7 +168,7 @@ public class PlayerSelectScreen : MonoBehaviour
                 }
 
                 // overshoot
-                if (startChoice < 0)
+                if (startChoice < 1)
                 {
                     startChoice = 4;
                 }
