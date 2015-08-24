@@ -18,6 +18,11 @@ public class GameController : MonoBehaviour
     //List<Actor> deadPlayers;
     //List<Actor> activePlayers;
 
+    public GameUIController uiController;
+
+
+    bool gameEnded = false;
+
 
     // Use this for initialization
     void Start()
@@ -59,6 +64,8 @@ public class GameController : MonoBehaviour
         // pause game, this still lets player's rotate
         Time.timeScale = 0;
         Debug.Log("Game Over.");
+        uiController.ShowFinalScreen();
+        gameEnded = true;
     }
 
     // by might be null
@@ -87,5 +94,13 @@ public class GameController : MonoBehaviour
         return timeLimit - (Time.time - startTime);
     }
 
+
+    public void RequestGameRestart()
+    {
+        if (gameEnded)
+        {
+            Application.LoadLevel("PlayerSelect");
+        }
+    }
 
 }
