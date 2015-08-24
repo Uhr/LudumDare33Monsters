@@ -16,8 +16,8 @@ public class Actor : MonoBehaviour
     [SerializeField]
     private float invincibleDuration = 2;
 
-	[SerializeField]
-	private ProjectileAttack attack;
+    [SerializeField]
+    private ProjectileAttack attack;
 
     [SerializeField]
     SpriteAnimator walkingAnimator1;
@@ -44,7 +44,7 @@ public class Actor : MonoBehaviour
 
     private float invincibleStart = 0;
 
-	private bool isInvincible = false;
+    private bool isInvincible = false;
 
 
     public void Initialize(int playerNumber, InputDevice input, GameController gameController)
@@ -71,10 +71,10 @@ public class Actor : MonoBehaviour
     }
 
 
-	bool shouldBeInvincible()
-	{
-		return Time.time - invincibleStart <= invincibleDuration;
-	}
+    bool shouldBeInvincible()
+    {
+        return Time.time - invincibleStart <= invincibleDuration;
+    }
 
     // Update is called once per frame
     void Update()
@@ -84,16 +84,16 @@ public class Actor : MonoBehaviour
         ComputeMovement();
 
 
-        if(isInvincible)
-		{
-			if(!shouldBeInvincible())
-            	SetInvincible(false);
-			else
-			{
-				Color c = playerSprite.color;
-				playerSprite.color = new Color(c.r, c.g, c.b, 2*Time.time % 1f > 0.5f ? 0.5f : 1f);
-			}
-		}
+        if (isInvincible)
+        {
+            if (!shouldBeInvincible())
+                SetInvincible(false);
+            else
+            {
+                Color c = playerSprite.color;
+                playerSprite.color = new Color(c.r, c.g, c.b, 2 * Time.time % 1f > 0.5f ? 0.5f : 1f);
+            }
+        }
     }
 
     public int GetChosenPlayerNumber()
@@ -233,29 +233,38 @@ public class Actor : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
         Projectile projectile = collider.gameObject.GetComponent<Projectile>();
+        bool jumping = GetComponentInChildren<Jump>().IsActive();
         if (projectile != null)
         {
-			bool jumping = GetComponentInChildren<Jump>().IsActive();
             // die
             if (projectile.GetOwner() != this && !isInvincible && !(jumping && projectile.isJumpable))
             {
                 gameController.PlayerKilled(this, projectile.GetOwner());
-				Destroy(projectile);
+                Destroy(projectile);
+            }
+        }
+        else if (collider.gameObject.CompareTag("Ground"))
+        {
+            if (!jumping)
+            {
+                Debug.Log("ground found");
+                gameController.PlayerKilled(this, null);
             }
         }
     }
 
+
     public void SetInvincible(bool invincible)
     {
-        if(invincible)
+        if (invincible)
             invincibleStart = Time.time;
 
-		isInvincible = invincible;
+        isInvincible = invincible;
 
-		attack.gameObject.SetActive(!invincible);
+        attack.gameObject.SetActive(!invincible);
         Color c = playerSprite.color;
         playerSprite.color = new Color(c.r, c.g, c.b, invincible ? 0.5f : 1f);
     }

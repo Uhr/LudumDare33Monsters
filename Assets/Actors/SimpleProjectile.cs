@@ -72,7 +72,7 @@ public class SimpleProjectile : Projectile, PlayerChoiceReactor
         }
         else
         {
-            standardYOffset = -0.25f;
+            standardYOffset = -0.125f;
         }
 
         projectileSprite.localPosition += new Vector3(0, standardYOffset, 0);

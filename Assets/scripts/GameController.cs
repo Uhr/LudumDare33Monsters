@@ -50,12 +50,13 @@ public class GameController : MonoBehaviour
     }
 
 
+    // by might be null
     public void PlayerKilled(Actor player, Actor by)
     {
 		List<Player> players = GlobalData.GetPlayers();
 
         int playerIndex = allPlayers.IndexOf(player);
-		int killerIndex = allPlayers.IndexOf(by);
+		int killerIndex = by == null ? -1 : allPlayers.IndexOf(by);
 
 		players[playerIndex].IncDeaths();
 
