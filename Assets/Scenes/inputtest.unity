@@ -5407,7 +5407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e268c321e45aad40a54fc6dd027e867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 5
+  timeLimit: 300
   monsterOriginal: {fileID: 1908953583}
   spawnPoints:
   - {fileID: 1409593816}
