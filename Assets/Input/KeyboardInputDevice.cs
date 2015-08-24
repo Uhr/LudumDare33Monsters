@@ -20,9 +20,9 @@ public class KeyboardInputDevice : InputDevice
 				KeyCode.RightArrow,
 				KeyCode.UpArrow,
 				KeyCode.DownArrow,
-				KeyCode.I,
+				KeyCode.P,
 				KeyCode.O,
-				KeyCode.P);
+				KeyCode.I);
 			break;
 
 			
