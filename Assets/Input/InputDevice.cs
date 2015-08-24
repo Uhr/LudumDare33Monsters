@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class InputDevice : MonoBehaviour
+public abstract class InputDevice
 {
 
 

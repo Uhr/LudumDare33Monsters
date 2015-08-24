@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Jump : Action
+public class Jump : Action, PlayerChoiceReactor
 {
 
     bool isJumping = false;
@@ -16,7 +16,13 @@ public class Jump : Action
     private float startTime;
 
     [SerializeField]
-    SpriteAnimator animator;
+    SpriteAnimator animator1;
+    [SerializeField]
+    SpriteAnimator animator2;
+    SpriteAnimator chosenAnimator;
+
+
+    float standardYOffset = 0;
 
     override public void performAction()
     {
@@ -26,7 +32,7 @@ public class Jump : Action
         {
             isJumping = true;
             startTime = Time.time;
-            animator.StartAnimation();
+            chosenAnimator.StartAnimation();
         }
 
     }
@@ -53,7 +59,7 @@ public class Jump : Action
         {
 
             float passedTimeRatio = (Time.time - startTime) / duration;
-            float animationHeight = animation.Evaluate(passedTimeRatio) * maxHeight;
+            float animationHeight = animation.Evaluate(passedTimeRatio) * maxHeight + standardYOffset;
             playerSprite.localPosition = new Vector3(playerSprite.localPosition.x, animationHeight, playerSprite.localPosition.z);
 
             if (passedTimeRatio >= 1)
@@ -61,7 +67,7 @@ public class Jump : Action
                 isJumping = false;
             }
 
-            animator.UpdateAnimation();
+            chosenAnimator.UpdateAnimation();
         }
     }
 
@@ -70,5 +76,22 @@ public class Jump : Action
     public override bool IsActive()
     {
         return isJumping;
+    }
+
+    public void PlayerChosen(int playerNumber)
+    {
+        if (playerNumber == 1 || playerNumber == 3)
+        {
+            standardYOffset = 0;
+            chosenAnimator = animator1;
+        }
+        else
+        {
+            standardYOffset = -0.085f;
+            chosenAnimator = animator2;
+        }
+
+        playerSprite.localPosition += new Vector3(0, standardYOffset, 0);
+
     }
 }

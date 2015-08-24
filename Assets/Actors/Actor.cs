@@ -6,7 +6,6 @@ public class Actor : MonoBehaviour
 {
     public InputDevice input;
     public float movementSpeed = 1;
-    public Collider2D collider;
     [SerializeField]
     public Action[] actions = new Action[4];
     public float hp = 50;
@@ -15,13 +14,56 @@ public class Actor : MonoBehaviour
     private Rigidbody2D rigidBody;
 
     [SerializeField]
-    SpriteAnimator walkingAnimator;
+    private float invincibleDuration = 2;
+
     [SerializeField]
-    SpriteAnimator idleAnimator;
+    SpriteAnimator walkingAnimator1;
+    [SerializeField]
+    SpriteAnimator walkingAnimator2;
+    SpriteAnimator chosenWalkingAnimator;
+    [SerializeField]
+    SpriteAnimator idleAnimator1;
+    [SerializeField]
+    SpriteAnimator idleAnimator2;
+    SpriteAnimator chosenIdleAnimator;
     enum AnimationState { CustomAction, Idle, Walking, None };
     AnimationState currentAnimationState = AnimationState.None;
 
     Vector2 lastAnimationMovementDirection = Vector2.zero;
+
+    [SerializeField]
+    int chosenPlayerNumber;
+
+    [SerializeField]
+    SpriteRenderer playerSprite;
+
+    GameController gameController;
+
+    private float invincibleStart = 0;
+
+
+    public void Initialize(int playerNumber, InputDevice input, GameController gameController)
+    {
+        this.gameController = gameController;
+
+        chosenPlayerNumber = playerNumber;
+        BroadcastMessage("PlayerChosen", chosenPlayerNumber);
+        this.input = input;
+
+        // chose animators
+        if (playerNumber == 1 || playerNumber == 3)
+        {
+            chosenIdleAnimator = idleAnimator1;
+            chosenWalkingAnimator = walkingAnimator1;
+        }
+        else
+        {
+            chosenIdleAnimator = idleAnimator2;
+            chosenWalkingAnimator = walkingAnimator2;
+        }
+
+
+    }
 
 
 
@@ -34,13 +76,13 @@ public class Actor : MonoBehaviour
         ComputeMovement();
 
 
+        if(Time.time - invincibleStart > invincibleDuration)
+            SetInvincible(false);
+    }
 
-
-        // fix draw order
-        Vector3 currentPosition = transform.position;
-        currentPosition.z = transform.position.y;
-        transform.position = currentPosition;
-
+    public int GetChosenPlayerNumber()
+    {
+        return chosenPlayerNumber;
     }
 
     bool MovementChangesBlocked()
@@ -89,7 +131,7 @@ public class Actor : MonoBehaviour
             if (input.GetButtonDown(i) && !actions[i].IsBlockedBy(activeActions))
             {
                 actions[i].performAction();
-                if(!activeActions.Contains(actions[i]))
+                if (!activeActions.Contains(actions[i]))
                     activeActions.Add(actions[i]);
             }
         }
@@ -120,12 +162,12 @@ public class Actor : MonoBehaviour
 
                 if (currentAnimationState == AnimationState.Idle)
                 {
-                    idleAnimator.UpdateAnimation();
+                    chosenIdleAnimator.UpdateAnimation();
                 }
                 else
                 {
                     currentAnimationState = AnimationState.Idle;
-                    idleAnimator.StartAnimation();
+                    chosenIdleAnimator.StartAnimation();
                 }
 
             }
@@ -133,12 +175,12 @@ public class Actor : MonoBehaviour
             {
                 if (currentAnimationState == AnimationState.Walking)
                 {
-                    walkingAnimator.UpdateAnimation();
+                    chosenWalkingAnimator.UpdateAnimation();
                 }
                 else
                 {
                     currentAnimationState = AnimationState.Walking;
-                    walkingAnimator.StartAnimation();
+                    chosenWalkingAnimator.StartAnimation();
                 }
             }
 
@@ -175,7 +217,27 @@ public class Actor : MonoBehaviour
 
     }
 
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        Projectile projectile = collider.gameObject.GetComponent<Projectile>();
+        if (projectile != null)
+        {
+            // die
+            if (projectile.GetOwner() != this && !(Time.time - invincibleStart <= invincibleDuration))
+            {
+                gameController.PlayerKilled(this, projectile.GetOwner());
 
+            }
+        }
+    }
 
+    public void SetInvincible(bool invincible)
+    {
+        if(invincible)
+            invincibleStart = Time.time;
 
+        GetComponentInChildren<ProjectileAttack>().enabled = !invincible;
+        Color c = playerSprite.color;
+        playerSprite.color = new Color(c.r, c.g, c.b, invincible ? 0.5f : 1f);
+    }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class ProjectileAttack : Action
+public class ProjectileAttack : Action, PlayerChoiceReactor
 {
     private float lastActionTime;
 
@@ -20,8 +20,11 @@ public class ProjectileAttack : Action
         {
             GameObject spawnedProjectile = Instantiate(projectile) as GameObject;
             spawnedProjectile.transform.position = projectile.transform.position;
-            spawnedProjectile.GetComponent<Projectile>().Initialize(player.GetLastAnimationMovementDirection());
+            spawnedProjectile.GetComponent<Projectile>().Initialize(player.GetLastAnimationMovementDirection(), player);
+            lastActionTime = Time.time;
         }
+
+
     }
 
     public override bool BlocksInputMovement()
@@ -41,6 +44,13 @@ public class ProjectileAttack : Action
 
     public override bool IsActive()
     {
-        return Time.time - lastActionTime <= cooldown;
+        return false;
     }
+
+
+    public void PlayerChosen(int playerNumber)
+    {
+        Debug.Log("player chosen: " + playerNumber);
+    }
+
 }

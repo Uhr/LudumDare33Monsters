@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Dash : Action
+public class Dash : Action, PlayerChoiceReactor
 {
 
     bool isActing = false;
@@ -10,7 +10,10 @@ public class Dash : Action
     private float startTime;
 
     [SerializeField]
-    SpriteAnimator animator;
+    SpriteAnimator animator1;
+    [SerializeField]
+    SpriteAnimator animator2;
+    SpriteAnimator chosenAnimator;
 
     override public void performAction()
     {
@@ -19,7 +22,7 @@ public class Dash : Action
         {
             isActing = true;
             startTime = Time.time;
-            animator.StartAnimation();
+            chosenAnimator.StartAnimation();
         }
 
     }
@@ -57,7 +60,7 @@ public class Dash : Action
             {
                 isActing = false;
             }
-            animator.UpdateAnimation();
+            chosenAnimator.UpdateAnimation();
         }
     }
 
@@ -66,5 +69,17 @@ public class Dash : Action
     public override bool IsActive()
     {
         return isActing;
+    }
+
+    public void PlayerChosen(int playerNumber)
+    {
+        if (playerNumber == 1 || playerNumber == 3)
+        {
+            chosenAnimator = animator1;
+        }
+        else
+        {
+            chosenAnimator = animator2;
+        }
     }
 }
