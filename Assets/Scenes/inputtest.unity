@@ -948,8 +948,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d617153330234a46b91fb02162d0633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isJumpable: 0
   rigidBody: {fileID: 1224620357}
   speed: 10
+  lifeTime: 5
   animator1: {fileID: 1224620356}
   animator2: {fileID: 1224620360}
   projectileSprite: {fileID: 1912202853}
@@ -1123,8 +1125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d617153330234a46b91fb02162d0633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isJumpable: 1
   rigidBody: {fileID: 1227520391}
   speed: 3
+  lifeTime: 5
   animator1: {fileID: 1227520387}
   animator2: {fileID: 1227520387}
   projectileSprite: {fileID: 1227520386}
