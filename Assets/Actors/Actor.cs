@@ -44,6 +44,8 @@ public class Actor : MonoBehaviour
 
     private float invincibleStart = 0;
 
+	private bool isInvincible = false;
+
 
     public void Initialize(int playerNumber, InputDevice input, GameController gameController)
     {
@@ -69,7 +71,10 @@ public class Actor : MonoBehaviour
     }
 
 
-
+	bool shouldBeInvincible()
+	{
+		return Time.time - invincibleStart <= invincibleDuration;
+	}
 
     // Update is called once per frame
     void Update()
@@ -79,8 +84,16 @@ public class Actor : MonoBehaviour
         ComputeMovement();
 
 
-        if(Time.time - invincibleStart > invincibleDuration)
-            SetInvincible(false);
+        if(isInvincible)
+		{
+			if(!shouldBeInvincible())
+            	SetInvincible(false);
+			else
+			{
+				Color c = playerSprite.color;
+				playerSprite.color = new Color(c.r, c.g, c.b, 2*Time.time % 1f > 0.5f ? 0.5f : 1f);
+			}
+		}
     }
 
     public int GetChosenPlayerNumber()
@@ -225,11 +238,12 @@ public class Actor : MonoBehaviour
         Projectile projectile = collider.gameObject.GetComponent<Projectile>();
         if (projectile != null)
         {
+			bool jumping = GetComponentInChildren<Jump>().IsActive();
             // die
-            if (projectile.GetOwner() != this && !(Time.time - invincibleStart <= invincibleDuration))
+            if (projectile.GetOwner() != this && !isInvincible && !jumping)
             {
                 gameController.PlayerKilled(this, projectile.GetOwner());
-
+				Destroy(projectile);
             }
         }
     }
@@ -238,6 +252,8 @@ public class Actor : MonoBehaviour
     {
         if(invincible)
             invincibleStart = Time.time;
+
+		isInvincible = invincible;
 
 		attack.gameObject.SetActive(!invincible);
         Color c = playerSprite.color;
