@@ -25,9 +25,7 @@ public class Jump : Action, PlayerChoiceReactor
     float standardYOffset = 0;
 
     override public void performAction()
-    {
-
-        Debug.Log("Jump started");
+	{
         if (!isJumping)
         {
             isJumping = true;

@@ -5,10 +5,6 @@ public class Player {
 
     int kills;
     int deaths;
-    int score
-    {
-        get { return kills - deaths;  }
-    }
 
     InputDevice input;
     int monsterChoice;
@@ -20,4 +16,39 @@ public class Player {
         this.input = input;
         this.monsterChoice = monsterChoice;
     }
+
+	public int getKills()
+	{
+		return kills;
+	}
+
+	public int getDeaths()
+	{
+		return deaths;
+	}
+
+	public int GetScore()
+	{
+		return kills - deaths;
+	}
+
+	public InputDevice getInput()
+	{
+		return input;
+	}
+
+	public int getMonsterChoice()
+	{
+		return monsterChoice;
+	}
+
+	public void IncKills()
+	{
+		kills++;
+	}
+
+	public void IncDeaths()
+	{
+		deaths++;
+	}
 }
