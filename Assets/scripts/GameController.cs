@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
+	[SerializeField]
+	float timeLimit = 5 * 60f;
 
+	private float startTime;
 
     [SerializeField]
     GameObject monsterOriginal;
@@ -19,6 +22,7 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		startTime = Time.time;
         allPlayers = new List<Actor>();
 		int i = 0;
         foreach (Player p in GlobalData.GetPlayers())
@@ -46,9 +50,16 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+		if(Time.time - startTime > timeLimit)
+			GameOver();
     }
 
+	public void GameOver()
+	{
+		// pause game, this still lets player's rotate
+		Time.timeScale = 0;
+		Debug.Log ("Game Over.");
+	}
 
     // by might be null
     public void PlayerKilled(Actor player, Actor by)
