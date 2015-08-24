@@ -749,7 +749,7 @@ MonoBehaviour:
   isJumpable: 1
   rigidBody: {fileID: 177777746}
   speed: 1.5
-  lifeTime: 5
+  lifeTime: 20
   animator1: {fileID: 177777749}
   animator2: {fileID: 177777749}
   projectileSprite: {fileID: 177777743}
@@ -1913,7 +1913,7 @@ MonoBehaviour:
   isJumpable: 1
   rigidBody: {fileID: 799465424}
   speed: 1.5
-  lifeTime: 5
+  lifeTime: 20
   animator1: {fileID: 799465427}
   animator2: {fileID: 799465427}
   projectileSprite: {fileID: 799465421}
@@ -2060,7 +2060,7 @@ MonoBehaviour:
   isJumpable: 1
   rigidBody: {fileID: 820165004}
   speed: 1.5
-  lifeTime: 5
+  lifeTime: 20
   animator1: {fileID: 820165007}
   animator2: {fileID: 820165007}
   projectileSprite: {fileID: 820165001}
@@ -2168,7 +2168,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 850565287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1000}
+  m_LocalPosition: {x: 0, y: 0, z: 3000}
   m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 0}
   m_Children: []
   m_Father: {fileID: 1344348922}
@@ -2821,7 +2821,7 @@ MonoBehaviour:
   isJumpable: 1
   rigidBody: {fileID: 852995071}
   speed: 1.5
-  lifeTime: 5
+  lifeTime: 20
   animator1: {fileID: 852995074}
   animator2: {fileID: 852995074}
   projectileSprite: {fileID: 852995068}
@@ -3134,7 +3134,7 @@ MonoBehaviour:
   isJumpable: 1
   rigidBody: {fileID: 951222595}
   speed: 1.5
-  lifeTime: 5
+  lifeTime: 20
   animator1: {fileID: 951222598}
   animator2: {fileID: 951222598}
   projectileSprite: {fileID: 951222592}
@@ -3335,7 +3335,7 @@ MonoBehaviour:
   isJumpable: 1
   rigidBody: {fileID: 1075805483}
   speed: 1.5
-  lifeTime: 5
+  lifeTime: 20
   animator1: {fileID: 1075805486}
   animator2: {fileID: 1075805486}
   projectileSprite: {fileID: 1075805480}
@@ -3482,7 +3482,7 @@ MonoBehaviour:
   isJumpable: 1
   rigidBody: {fileID: 1081299415}
   speed: 1.5
-  lifeTime: 5
+  lifeTime: 20
   animator1: {fileID: 1081299418}
   animator2: {fileID: 1081299418}
   projectileSprite: {fileID: 1081299412}
@@ -3996,7 +3996,7 @@ MonoBehaviour:
   isJumpable: 1
   rigidBody: {fileID: 1227520391}
   speed: 1.5
-  lifeTime: 5
+  lifeTime: 20
   animator1: {fileID: 1227520387}
   animator2: {fileID: 1227520387}
   projectileSprite: {fileID: 1227520386}
@@ -5018,7 +5018,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1397940331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4000}
   m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 1}
   m_Children: []
   m_Father: {fileID: 1344348922}
