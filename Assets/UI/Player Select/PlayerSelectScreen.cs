@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class PlayerSelectScreen : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class PlayerSelectScreen : MonoBehaviour
     public const int startGameKey = 7;
 
     public string gameSceneToStartAfterPlayerSelect;
+
+    [SerializeField]
+    List<Text> loadingToBeTexts;
+
 
 
 
@@ -81,7 +86,7 @@ public class PlayerSelectScreen : MonoBehaviour
 
     }
 
-    private void TryToStartGame()
+    public void TryToStartGame()
     {
         // collect player selection
         List<Player> allPlayers = new List<Player>();
@@ -98,7 +103,10 @@ public class PlayerSelectScreen : MonoBehaviour
         {
             GlobalData.SetPlayers(allPlayers);
             Application.LoadLevel(gameSceneToStartAfterPlayerSelect);
-
+            foreach (Text text in loadingToBeTexts)
+            {
+                text.text = "Loading...";
+            }
         }
 
     }
