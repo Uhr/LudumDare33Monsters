@@ -94,7 +94,11 @@ public class PlayerSelectScreen : MonoBehaviour
         {
             if (allSelectors[i].IsInUse())
             {
-                allPlayers.Add(new Player(allSelectors[i].GetInput(), allSelectors[i].GetMonsterChoice()));
+                allPlayers.Add(new Player(
+                    allSelectors[i].GetInput(), 
+                    allSelectors[i].GetMonsterChoice(), 
+                    allSelectors[i].getName(),
+                    allSelectors[i].getColor()));
             }
         }
 

@@ -9,12 +9,17 @@ public class Player {
     InputDevice input;
     int monsterChoice;
 
-    public Player(InputDevice input, int monsterChoice)
+    string name;
+    Color color;
+
+    public Player(InputDevice input, int monsterChoice, string name, Color color)
     {
         kills = 0;
         deaths = 0;
         this.input = input;
         this.monsterChoice = monsterChoice;
+        this.name = name;
+        this.color = color;
     }
 
 	public int getKills()
@@ -51,4 +56,14 @@ public class Player {
 	{
 		deaths++;
 	}
+
+    public string getName()
+    {
+        return name;
+    }
+
+    public Color getColor()
+    {
+        return color;
+    }
 }

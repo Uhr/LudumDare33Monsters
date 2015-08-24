@@ -156,4 +156,14 @@ public class SingleSelector : MonoBehaviour
     }
 
 
+
+    internal Color getColor()
+    {
+        return playerText.color;
+    }
+
+    internal string getName()
+    {
+        return playerText.text;
+    }
 }
