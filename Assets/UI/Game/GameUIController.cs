@@ -6,6 +6,7 @@ public class GameUIController : MonoBehaviour
 {
 
     public List<Text> scoreOutputs;
+    public Text timeOutput;
 
     public GameController gameController;
 
@@ -43,7 +44,7 @@ public class GameUIController : MonoBehaviour
 
 
         // update timer
-
+        timeOutput.text = (Mathf.FloorToInt(gameController.getTimeLeft())).ToString();
 
     }
 }

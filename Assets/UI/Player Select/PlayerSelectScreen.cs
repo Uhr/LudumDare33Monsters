@@ -50,7 +50,8 @@ public class PlayerSelectScreen : MonoBehaviour
 
         // collect possible input devices
         potentialInputDevices = new List<InputDevice>();
-        potentialInputDevices.Add(new KeyboardInputDevice());
+        potentialInputDevices.Add(new KeyboardInputDevice(0));
+        potentialInputDevices.Add(new KeyboardInputDevice(1));
         for (int i = 1; i <= 4; i++)
         {
             potentialInputDevices.Add(new XBox360InputDevice(i));

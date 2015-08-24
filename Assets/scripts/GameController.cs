@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
-	[SerializeField]
-	float timeLimit = 5 * 60f;
+    [SerializeField]
+    float timeLimit = 5 * 60f;
 
-	private float startTime;
+    private float startTime;
 
     [SerializeField]
     GameObject monsterOriginal;
@@ -22,9 +22,9 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		startTime = Time.time;
+        startTime = Time.time;
         allPlayers = new List<Actor>();
-		int i = 0;
+        int i = 0;
         foreach (Player p in GlobalData.GetPlayers())
         {
             GameObject newMonster = Instantiate(monsterOriginal) as GameObject;
@@ -50,39 +50,42 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(Time.time - startTime > timeLimit)
-			GameOver();
+        if (Time.time - startTime > timeLimit)
+            GameOver();
     }
 
-	public void GameOver()
-	{
-		// pause game, this still lets player's rotate
-		Time.timeScale = 0;
-		Debug.Log ("Game Over.");
-	}
+    public void GameOver()
+    {
+        // pause game, this still lets player's rotate
+        Time.timeScale = 0;
+        Debug.Log("Game Over.");
+    }
 
     // by might be null
     public void PlayerKilled(Actor player, Actor by)
     {
-		List<Player> players = GlobalData.GetPlayers();
+        List<Player> players = GlobalData.GetPlayers();
 
         int playerIndex = allPlayers.IndexOf(player);
-		int killerIndex = by == null ? -1 : allPlayers.IndexOf(by);
+        int killerIndex = by == null ? -1 : allPlayers.IndexOf(by);
 
-		players[playerIndex].IncDeaths();
+        players[playerIndex].IncDeaths();
 
-		if(killerIndex >= 0)
-			players[killerIndex].IncKills();
+        if (killerIndex >= 0)
+            players[killerIndex].IncKills();
 
         Respawn(playerIndex + 1);
 
-		for(int i=0; i<players.Count; i++)
-		{
-			Debug.Log("Player "+i+" score: "+players[i].GetScore());
-		}
+        for (int i = 0; i < players.Count; i++)
+        {
+            Debug.Log("Player " + i + " score: " + players[i].GetScore());
+        }
     }
 
-
+    public float getTimeLeft()
+    {
+        return timeLimit - (Time.time - startTime);
+    }
 
 
 }
