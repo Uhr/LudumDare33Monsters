@@ -11,7 +11,6 @@ public class TurretBarrelActor : Actor {
 	[SerializeField]
 	float speedUpPerSecond = 0.1f;
 
-	float start;
 	float nextAttack;
 
 	void OnTriggerEnter2D(Collider2D collider)
@@ -26,7 +25,6 @@ public class TurretBarrelActor : Actor {
 
 	void Start()
 	{
-		start = Time.time;
 		calcNextAttack();
 		GetComponentInChildren<SimpleProjectile>().gameObject.SetActive(false);
 	}
