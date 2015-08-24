@@ -21,27 +21,16 @@ public class GameController : MonoBehaviour
     {
 
         allPlayers = new List<Actor>();
-
-        for (int i = 1; i <= 2; i++)
+		int i = 0;
+        foreach (Player p in GlobalData.GetPlayers())
         {
             GameObject newMonster = Instantiate(monsterOriginal) as GameObject;
             Actor monsterActor = newMonster.GetComponent<Actor>();
 
-            // choose input
-            InputDevice input;
-            if (i == 1)
-            {
-                input = new KeyboardInputDevice();
-            }
-            else
-            {
-                input = new XBox360InputDevice(i - 1);
-            }
-
             allPlayers.Add(monsterActor);
 
-            monsterActor.Initialize(i, input, this);
-            Respawn(i);
+            monsterActor.Initialize(p.getMonsterChoice(), p.getInput(), this);
+            Respawn(++i);
         }
 
         monsterOriginal.gameObject.SetActive(false);
@@ -64,8 +53,22 @@ public class GameController : MonoBehaviour
 
     public void PlayerKilled(Actor player, Actor by)
     {
+		List<Player> players = GlobalData.GetPlayers();
+
         int playerIndex = allPlayers.IndexOf(player);
+		int killerIndex = allPlayers.IndexOf(by);
+
+		players[playerIndex].IncDeaths();
+
+		if(killerIndex >= 0)
+			players[killerIndex].IncKills();
+
         Respawn(playerIndex + 1);
+
+		for(int i=0; i<players.Count; i++)
+		{
+			Debug.Log("Player "+i+" score: "+players[i].GetScore());
+		}
     }
 
 

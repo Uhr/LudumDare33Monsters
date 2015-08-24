@@ -16,6 +16,9 @@ public class Actor : MonoBehaviour
     [SerializeField]
     private float invincibleDuration = 2;
 
+	[SerializeField]
+	private ProjectileAttack attack;
+
     [SerializeField]
     SpriteAnimator walkingAnimator1;
     [SerializeField]
@@ -236,7 +239,7 @@ public class Actor : MonoBehaviour
         if(invincible)
             invincibleStart = Time.time;
 
-        GetComponentInChildren<ProjectileAttack>().enabled = !invincible;
+		attack.gameObject.SetActive(!invincible);
         Color c = playerSprite.color;
         playerSprite.color = new Color(c.r, c.g, c.b, invincible ? 0.5f : 1f);
     }

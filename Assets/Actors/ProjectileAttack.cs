@@ -16,6 +16,9 @@ public class ProjectileAttack : Action, PlayerChoiceReactor
 
     public override void performAction()
     {
+		if(!gameObject.activeSelf)
+			return;
+
         if (Time.time - lastActionTime > cooldown)
         {
             GameObject spawnedProjectile = Instantiate(projectile) as GameObject;
@@ -34,7 +37,7 @@ public class ProjectileAttack : Action, PlayerChoiceReactor
 
     public override bool IsBlockedBy(List<Action> activeActions)
     {
-        return activeActions.Exists(x => x is Dash);
+        return activeActions.Exists(x => x is Dash || x is Jump);
     }
 
     public override void ResetState()

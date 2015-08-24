@@ -5,7 +5,7 @@ public class GlobalData  {
 
     static List<Player> players = new List<Player>();
 
-    public static List<Player> getPlayers()
+    public static List<Player> GetPlayers()
     {
         return players;
     }
