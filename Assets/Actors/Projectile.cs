@@ -3,6 +3,7 @@ using System.Collections;
 
 public abstract class Projectile : MonoBehaviour
 {
+	public bool isJumpable;
 
     protected Actor owner;
 
