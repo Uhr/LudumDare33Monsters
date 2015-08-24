@@ -3,15 +3,62 @@ using System.Collections;
 
 public class KeyboardInputDevice : InputDevice
 {
+	KeyCode left, right, up, down, jump, dash, attack;
+
+	public KeyboardInputDevice() : this(0)
+	{
+
+	}
+
+	public KeyboardInputDevice(int id)
+	{
+		switch(id)
+		{
+		case 1:
+			Init (
+				KeyCode.LeftArrow,
+				KeyCode.RightArrow,
+				KeyCode.UpArrow,
+				KeyCode.DownArrow,
+				KeyCode.I,
+				KeyCode.O,
+				KeyCode.P);
+			break;
+
+			
+		default:
+			Init (
+				KeyCode.A,
+				KeyCode.D,
+				KeyCode.W,
+				KeyCode.S,
+				KeyCode.C,
+				KeyCode.V,
+				KeyCode.B);
+			break;
+		}
+	}
+
+	private void Init(KeyCode l, KeyCode r, KeyCode u, KeyCode d,
+	                  KeyCode jmp, KeyCode dsh, KeyCode atk)
+	{
+		left = l;
+		right = r;
+		up = u;
+		down = d;
+		jump = jmp;
+		dash = dsh;
+		attack = atk;
+	}
 
     override public float GetXAxis()
     {
         float x = 0;
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(left))
             x -= 1;
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(right))
             x += 1;
 
         return x;
@@ -21,10 +68,10 @@ public class KeyboardInputDevice : InputDevice
     {
         float y = 0;
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(down))
             y -= 1;
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(up))
             y += 1;
 
         return y;
@@ -34,10 +81,9 @@ public class KeyboardInputDevice : InputDevice
     {
         switch (buttonIndex)
         {
-            case 0: return Input.GetKey(KeyCode.J);
-            case 1: return Input.GetKey(KeyCode.K);
-            case 2: return Input.GetKey(KeyCode.L);
-            case 3: return Input.GetKey(KeyCode.I);
+            case 0: return Input.GetKey(jump);
+            case 1: return Input.GetKey(dash);
+            case 2: return Input.GetKey(attack);
             case 7: return Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Escape);
 
         }
@@ -49,10 +95,9 @@ public class KeyboardInputDevice : InputDevice
     {
         switch (buttonIndex)
         {
-            case 0: return Input.GetKeyDown(KeyCode.J);
-            case 1: return Input.GetKeyDown(KeyCode.K);
-            case 2: return Input.GetKeyDown(KeyCode.L);
-            case 3: return Input.GetKeyDown(KeyCode.I);
+            case 0: return Input.GetKeyDown(jump);
+            case 1: return Input.GetKeyDown(dash);
+            case 2: return Input.GetKeyDown(attack);
             case 7: return Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape);
         }
 
@@ -64,10 +109,9 @@ public class KeyboardInputDevice : InputDevice
     {
         switch (buttonIndex)
         {
-            case 0: return Input.GetKeyUp(KeyCode.J);
-            case 1: return Input.GetKeyUp(KeyCode.K);
-            case 2: return Input.GetKeyUp(KeyCode.L);
-            case 3: return Input.GetKeyUp(KeyCode.I);
+            case 0: return Input.GetKeyUp(jump);
+            case 1: return Input.GetKeyUp(dash);
+            case 2: return Input.GetKeyUp(attack);
             case 7: return Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.Escape);
         }
 
