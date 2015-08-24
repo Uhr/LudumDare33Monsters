@@ -14,8 +14,8 @@ public class GlobalData
     static GlobalData()
     {
         // will be overwritten if started from menu
-        players.Add(new Player(new KeyboardInputDevice(), 1, "Steve", Color.white));
-        players.Add(new Player(new XBox360InputDevice(1), 2, "John", Color.magenta));
+        players.Add(new Player(new KeyboardInputDevice(), 1, "P1", Color.white));
+        players.Add(new Player(new XBox360InputDevice(1), 2, "P2", Color.magenta));
     }
 
     internal static void SetPlayers(List<Player> allPlayers)
