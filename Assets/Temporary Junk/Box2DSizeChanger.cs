@@ -30,9 +30,7 @@ public class Box2DSizeChanger : MonoBehaviour
             {
                 colliderOLD.size += new Vector2(sizeChange, sizeChange);
             }
-
-
-
+            
             isDone = true;
         }
     }
