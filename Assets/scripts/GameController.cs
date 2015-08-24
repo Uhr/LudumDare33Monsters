@@ -61,11 +61,15 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        // pause game, this still lets player's rotate
-        Time.timeScale = 0;
-        Debug.Log("Game Over.");
-        uiController.ShowFinalScreen();
-        gameEnded = true;
+        if (gameEnded == false)
+        {
+            // pause game, this still lets player's rotate
+            Time.timeScale = 0;
+            Debug.Log("Game Over.");
+            uiController.ShowFinalScreen();
+            gameEnded = true;
+        }
+
     }
 
     // by might be null
@@ -99,6 +103,7 @@ public class GameController : MonoBehaviour
     {
         if (gameEnded)
         {
+            Time.timeScale = 1;
             Application.LoadLevel("PlayerSelect");
         }
     }

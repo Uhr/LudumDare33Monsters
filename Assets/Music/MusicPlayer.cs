@@ -37,6 +37,14 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+    }
+
     
 
 
