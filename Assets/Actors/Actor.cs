@@ -16,6 +16,9 @@ public class Actor : MonoBehaviour
     [SerializeField]
     private float invincibleDuration = 2;
 
+	[SerializeField]
+	private float respawnMoveBlockDuration = 0.5f;
+
     [SerializeField]
     private ProjectileAttack attack;
 
@@ -70,7 +73,6 @@ public class Actor : MonoBehaviour
 
     }
 
-
     bool shouldBeInvincible()
     {
         return Time.time - invincibleStart <= invincibleDuration;
@@ -91,10 +93,18 @@ public class Actor : MonoBehaviour
             else
             {
                 Color c = playerSprite.color;
-                playerSprite.color = new Color(c.r, c.g, c.b, 2 * Time.time % 1f > 0.5f ? 0.5f : 1f);
+				if(isRespawnMovementBlockActive())
+					playerSprite.color = new Color(c.r, c.g, c.b, 0.5f);
+				else
+                	playerSprite.color = new Color(c.r, c.g, c.b, 2 * Time.time % 1f > 0.5f ? 0.5f : 1f);
             }
         }
     }
+
+	private bool isRespawnMovementBlockActive()
+	{
+		return Time.time - invincibleStart < respawnMoveBlockDuration;
+	}
 
     public int GetChosenPlayerNumber()
     {
@@ -113,7 +123,13 @@ public class Actor : MonoBehaviour
             }
         }
 
-        return false;
+		if(isRespawnMovementBlockActive())
+		{
+			rigidBody.velocity = Vector2.zero;
+			return true;
+		}
+
+		return false;
     }
 
     public virtual Vector2 GetLastAnimationMovementDirection()
@@ -250,8 +266,7 @@ public class Actor : MonoBehaviour
         {
             if (!jumping)
             {
-                Debug.Log("ground found");
-                gameController.PlayerKilled(this, null);
+				gameController.PlayerKilled(this, null);
             }
         }
     }
