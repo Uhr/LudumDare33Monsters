@@ -240,7 +240,7 @@ public class Actor : MonoBehaviour
         {
 			bool jumping = GetComponentInChildren<Jump>().IsActive();
             // die
-            if (projectile.GetOwner() != this && !isInvincible && !jumping)
+            if (projectile.GetOwner() != this && !isInvincible && !(jumping && projectile.isJumpable))
             {
                 gameController.PlayerKilled(this, projectile.GetOwner());
 				Destroy(projectile);
