@@ -202,6 +202,8 @@ MonoBehaviour:
   idleAnimator2: {fileID: 0}
   chosenPlayerNumber: -1
   playerSprite: {fileID: 0}
+  monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
+  monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 77994611}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -304,6 +306,8 @@ MonoBehaviour:
   idleAnimator2: {fileID: 0}
   chosenPlayerNumber: -1
   playerSprite: {fileID: 0}
+  monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
+  monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 79265189}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -608,6 +612,8 @@ MonoBehaviour:
   idleAnimator2: {fileID: 0}
   chosenPlayerNumber: -1
   playerSprite: {fileID: 0}
+  monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
+  monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 158421536}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -1211,6 +1217,8 @@ MonoBehaviour:
   idleAnimator2: {fileID: 0}
   chosenPlayerNumber: -1
   playerSprite: {fileID: 0}
+  monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
+  monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 473651047}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -1689,6 +1697,8 @@ MonoBehaviour:
   idleAnimator2: {fileID: 0}
   chosenPlayerNumber: -1
   playerSprite: {fileID: 0}
+  monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
+  monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 705280955}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -5326,6 +5336,8 @@ MonoBehaviour:
   idleAnimator2: {fileID: 0}
   chosenPlayerNumber: -1
   playerSprite: {fileID: 0}
+  monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
+  monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 1496497840}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -5608,6 +5620,8 @@ MonoBehaviour:
   idleAnimator2: {fileID: 0}
   chosenPlayerNumber: -1
   playerSprite: {fileID: 0}
+  monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
+  monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 1637607476}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -5696,6 +5710,8 @@ MonoBehaviour:
   idleAnimator2: {fileID: 0}
   chosenPlayerNumber: -1
   playerSprite: {fileID: 0}
+  monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
+  monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 1699519092}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -6124,6 +6140,8 @@ MonoBehaviour:
   idleAnimator2: {fileID: 556375820}
   chosenPlayerNumber: 2
   playerSprite: {fileID: 729887802}
+  monster1AltColor: {r: 0, g: 1, b: 1, a: 1}
+  monster2AltColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!4 &1908953585
 Transform:
   m_ObjectHideFlags: 0

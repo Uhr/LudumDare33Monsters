@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Actor : MonoBehaviour
+public class Actor : MonoBehaviour, PlayerChoiceReactor
 {
     public InputDevice input;
     public float movementSpeed = 1;
@@ -42,6 +42,12 @@ public class Actor : MonoBehaviour
 
     [SerializeField]
     SpriteRenderer playerSprite;
+
+	[SerializeField]
+	Color monster1AltColor;
+
+	[SerializeField]
+	Color monster2AltColor;
 
     GameController gameController;
 
@@ -283,4 +289,14 @@ public class Actor : MonoBehaviour
         Color c = playerSprite.color;
         playerSprite.color = new Color(c.r, c.g, c.b, invincible ? 0.5f : 1f);
     }
+
+	
+	
+	public void PlayerChosen(int playerNumber)
+	{
+		if(playerNumber == 3)
+			playerSprite.color = monster1AltColor;
+		else if(playerNumber == 4)
+			playerSprite.color = monster2AltColor;
+	}
 }
