@@ -103,7 +103,7 @@ public class Actor : MonoBehaviour
         return false;
     }
 
-    public Vector2 GetLastAnimationMovementDirection()
+    public virtual Vector2 GetLastAnimationMovementDirection()
     {
         return lastAnimationMovementDirection;
     }

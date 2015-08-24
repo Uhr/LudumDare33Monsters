@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public class SpriteAnimator : MonoBehaviour
 {
     [SerializeField]
-    Rigidbody2D playerRigidBody;
-    [SerializeField]
     Actor actor;
 
     [SerializeField]
@@ -147,7 +145,9 @@ public class SpriteAnimator : MonoBehaviour
         float passedTimeRatio = (Time.time - animationStartTime) / animationDuration;
         if (debugOutput)
             Debug.Log("Passed Time Ratio " + passedTimeRatio);
+
         int index = Mathf.FloorToInt(passedTimeRatio * chosenSprites.Count);
+
         if (debugOutput)
             Debug.Log("Index: " + index);
         if (debugOutput)

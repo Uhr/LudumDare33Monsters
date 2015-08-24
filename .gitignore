@@ -5,6 +5,7 @@ Obj/
 UnityGenerated/
 Library/
 Builds/
+Assets/StreamingAssets/
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
