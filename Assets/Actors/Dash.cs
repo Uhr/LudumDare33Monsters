@@ -13,12 +13,16 @@ public class Dash : Action, PlayerChoiceReactor
     SpriteAnimator animator1;
     [SerializeField]
     SpriteAnimator animator2;
+
+    [SerializeField]
+    Actor actor;
+
     SpriteAnimator chosenAnimator;
 
     override public void performAction()
     {
 
-        if (!isActing)
+        if (!isActing && !actor.IsInvincible())
         {
             isActing = true;
             startTime = Time.time;
@@ -45,6 +49,9 @@ public class Dash : Action, PlayerChoiceReactor
 
     void Update()
     {
+        if (actor.IsInvincible())
+            isActing = false;
+
         if (isActing)
         {
             if (Time.time - startTime > duration)

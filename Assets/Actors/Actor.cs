@@ -258,6 +258,11 @@ public class Actor : MonoBehaviour, PlayerChoiceReactor
 
     }
 
+    public bool IsInvincible()
+    {
+        return isInvincible;
+    }
+
     void OnTriggerStay2D(Collider2D collider)
     {
         Projectile projectile = collider.gameObject.GetComponent<Projectile>();
