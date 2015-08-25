@@ -387,7 +387,7 @@ MonoBehaviour:
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 77994611}
   delay: 3
-  speedUpPerSecond: .00999999978
+  speedUpPerSecond: .0199999996
   minDelay: .5
   rotSpeed: -10
   limitedRot: 1
@@ -496,7 +496,7 @@ MonoBehaviour:
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 79265189}
   delay: 3
-  speedUpPerSecond: .00999999978
+  speedUpPerSecond: .0199999996
   minDelay: .5
   rotSpeed: 10
   limitedRot: 0
@@ -807,7 +807,7 @@ MonoBehaviour:
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 158421536}
   delay: 3
-  speedUpPerSecond: .00999999978
+  speedUpPerSecond: .0199999996
   minDelay: .5
   rotSpeed: 10
   limitedRot: 0
@@ -1539,7 +1539,7 @@ MonoBehaviour:
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 473651047}
   delay: 3
-  speedUpPerSecond: .00999999978
+  speedUpPerSecond: .0199999996
   minDelay: .5
   rotSpeed: -10
   limitedRot: 0
@@ -2086,7 +2086,7 @@ MonoBehaviour:
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 705280955}
   delay: 3
-  speedUpPerSecond: .00999999978
+  speedUpPerSecond: .0199999996
   minDelay: .5
   rotSpeed: 10
   limitedRot: 1
@@ -5407,7 +5407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e268c321e45aad40a54fc6dd027e867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 300
+  timeLimit: 100
   monsterOriginal: {fileID: 1908953583}
   spawnPoints:
   - {fileID: 1409593816}
@@ -5813,6 +5813,7 @@ MonoBehaviour:
   duration: .25
   animator1: {fileID: 1425395973}
   animator2: {fileID: 1425395971}
+  actor: {fileID: 1908953584}
 --- !u!114 &1425395971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5963,7 +5964,7 @@ MonoBehaviour:
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 1496497840}
   delay: 3
-  speedUpPerSecond: .00999999978
+  speedUpPerSecond: .0199999996
   minDelay: .5
   rotSpeed: 10
   limitedRot: 1
@@ -6252,7 +6253,7 @@ MonoBehaviour:
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 1637607476}
   delay: 3
-  speedUpPerSecond: .00999999978
+  speedUpPerSecond: .0199999996
   minDelay: .5
   rotSpeed: -10
   limitedRot: 0
@@ -6347,7 +6348,7 @@ MonoBehaviour:
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
   projAttack: {fileID: 1699519092}
   delay: 3
-  speedUpPerSecond: .00999999978
+  speedUpPerSecond: .0199999996
   minDelay: .5
   rotSpeed: -10
   limitedRot: 1
