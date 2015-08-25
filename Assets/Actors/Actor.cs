@@ -49,6 +49,9 @@ public class Actor : MonoBehaviour, PlayerChoiceReactor
 	[SerializeField]
 	Color monster2AltColor;
 
+	[SerializeField]
+	Fall fall;
+
     GameController gameController;
 
     private float invincibleStart = 0;
@@ -272,7 +275,8 @@ public class Actor : MonoBehaviour, PlayerChoiceReactor
         {
             if (!jumping)
             {
-				gameController.PlayerKilled(this, null);
+				//gameController.PlayerKilled(this, null);
+				fall.performAction();
             }
         }
     }
@@ -289,6 +293,11 @@ public class Actor : MonoBehaviour, PlayerChoiceReactor
         Color c = playerSprite.color;
         playerSprite.color = new Color(c.r, c.g, c.b, invincible ? 0.5f : 1f);
     }
+
+	public void Die()
+	{
+		gameController.PlayerKilled(this, null);
+	}
 
 	
 	

@@ -37,7 +37,7 @@ public class ProjectileAttack : Action, PlayerChoiceReactor
 
     public override bool IsBlockedBy(List<Action> activeActions)
     {
-        return activeActions.Exists(x => x is Dash || x is Jump);
+        return activeActions.Exists(x => x is Dash || x is Jump || x is Fall);
     }
 
     public override void ResetState()

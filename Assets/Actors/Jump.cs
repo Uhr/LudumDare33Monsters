@@ -42,7 +42,7 @@ public class Jump : Action, PlayerChoiceReactor
 
     override public bool IsBlockedBy(List<Action> activeActions)
     {
-        return activeActions.Exists(x => x is Dash);
+        return activeActions.Exists(x => x is Dash || x is Fall);
     }
 
 

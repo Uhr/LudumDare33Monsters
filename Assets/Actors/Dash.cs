@@ -34,16 +34,7 @@ public class Dash : Action, PlayerChoiceReactor
 
     override public bool IsBlockedBy(List<Action> activeActions)
     {
-        //return activeActions.Exists(x => x is Jump);
-        foreach (Action a in activeActions)
-        {
-            if (a is Jump)
-            {
-                return true;
-            }
-        }
-
-        return false;
+		return activeActions.Exists(x => x is Jump || x is Fall);
     }
 
 

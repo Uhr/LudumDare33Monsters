@@ -385,6 +385,7 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
+  fall: {fileID: 0}
   projAttack: {fileID: 77994611}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -494,6 +495,7 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
+  fall: {fileID: 0}
   projAttack: {fileID: 79265189}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -805,6 +807,7 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
+  fall: {fileID: 0}
   projAttack: {fileID: 158421536}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -1537,6 +1540,7 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
+  fall: {fileID: 0}
   projAttack: {fileID: 473651047}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -2084,6 +2088,7 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
+  fall: {fileID: 0}
   projAttack: {fileID: 705280955}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -4154,6 +4159,50 @@ MonoBehaviour:
   animationDuration: 1
   debugOutput: 0
   debugName: 
+--- !u!1 &1096792410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1096792411}
+  - 114: {fileID: 1096792412}
+  m_Layer: 0
+  m_Name: Fall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1096792411
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096792410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2041468371}
+  m_RootOrder: 3
+--- !u!114 &1096792412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096792410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f413dbe1157cd8a4ebcab2abd5a9e9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 729887802}
+  shrinkSpeed: .5
+  duration: 1
+  shadow: {fileID: 545973569}
+  actor: {fileID: 1908953584}
 --- !u!1 &1137081674
 GameObject:
   m_ObjectHideFlags: 0
@@ -5961,6 +6010,7 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
+  fall: {fileID: 0}
   projAttack: {fileID: 1496497840}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -6250,6 +6300,7 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
+  fall: {fileID: 0}
   projAttack: {fileID: 1637607476}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -6345,6 +6396,7 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   monster1AltColor: {r: 0, g: 0, b: 0, a: 0}
   monster2AltColor: {r: 0, g: 0, b: 0, a: 0}
+  fall: {fileID: 0}
   projAttack: {fileID: 1699519092}
   delay: 3
   speedUpPerSecond: .00999999978
@@ -6767,6 +6819,7 @@ MonoBehaviour:
   - {fileID: 1281822086}
   - {fileID: 1425395970}
   - {fileID: 219618679}
+  - {fileID: 1096792412}
   hp: 50
   rigidBody: {fileID: 1908953587}
   invincibleDuration: 3
@@ -6780,6 +6833,7 @@ MonoBehaviour:
   playerSprite: {fileID: 729887802}
   monster1AltColor: {r: 0, g: 1, b: 1, a: 1}
   monster2AltColor: {r: 1, g: 1, b: 0, a: 1}
+  fall: {fileID: 1096792412}
 --- !u!4 &1908953585
 Transform:
   m_ObjectHideFlags: 0
@@ -7836,5 +7890,6 @@ Transform:
   - {fileID: 1281822088}
   - {fileID: 1425395972}
   - {fileID: 219618680}
+  - {fileID: 1096792411}
   m_Father: {fileID: 1908953585}
   m_RootOrder: 0
